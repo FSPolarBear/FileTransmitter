@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>FileTransmitter</title>
+</head>
+<body>
+
+<h1>File Transmitter</h1>
+<input type="button" value="Refresh" onclick="location.href=('{% url 'main:home' %}')">
+{% if messages %}
+{% for msg in messages %}
+{{ msg }}
+{% endfor %}
+{% endif %}
+
+
+<form action="{% url 'main:upload' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Upload file</h2>
+    <input type="file" accept=".*" id="uploader" name="uploader">
+    <input type="submit" value="Upload">
+</form>
+<h2>Download file</h2>
+<table>
+    {% for file in files %}
+    <tr>
+        <td>{{file}}</td>
+        <td>
+            <input type="button" value="Download" onclick="location.href=('{% url 'main:download' file %}')">
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
