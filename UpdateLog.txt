@@ -1,0 +1,7 @@
+2024.2.8
+v1.0.1
+We fixed a bug that files with a name including single quotation marks (') cannot be downloaded.
+
+2024.2.5
+v1.0.0
+This is the first version of FileTransmitter

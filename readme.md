@@ -2,7 +2,7 @@
 This is a tool for transmitting files over a LAN.
 
 ## version
-v1.0.0
+v1.0.1
 
 ## Environmental Requirements
 Python >= 3.10.6, Django >= 5.0.1

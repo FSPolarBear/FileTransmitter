@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <title>FileTransmitter</title>
 </head>
-<body>
+<body onload="setFileName()">
 
 <h1>File Transmitter</h1>
 <input type="button" value="Refresh" onclick="location.href=('{% url 'main:home' %}')">
@@ -25,13 +25,24 @@
 <table>
     {% for file in files %}
     <tr>
-        <td>{{file}}</td>
+        <td id="td_{{file}}">{{file}}</td>
         <td>
             <input type="button" value="Download" onclick="location.href=('{% url 'main:download' file %}')">
         </td>
     </tr>
     {% endfor %}
 </table>
+
+<script>
+    setFileName = function(){
+        var filename;
+        {% for file in files %}
+        filename = document.getElementById("td_{{file}}").textContent
+
+        document.getElementById("td_{{file}}").textContent = decodeURIComponent(filename);
+        {% endfor %}
+    }
+</script>
 
 </body>
 </html>

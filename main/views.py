@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse, FileResponse
+from urllib.parse import quote, unquote
 import os
 # Create your views here.
 
@@ -12,7 +13,7 @@ def list_files():
     for file in files:
         path = f'files/{file}'
         if os.path.isfile(path):
-            result.append(file)
+            result.append(quote(file))
     return result
 
 def home(request):
@@ -43,7 +44,8 @@ DIR_FILES = os.path.abspath('files')
 
 def download(request, file):
     try:
-        path = f'files/{file}'
+
+        path = f'files/{unquote(file)}'
         # This prevents downloading a file that is not in the "files" folder by "..".
         if os.path.dirname(os.path.abspath(path)) != DIR_FILES:
             raise Exception()
